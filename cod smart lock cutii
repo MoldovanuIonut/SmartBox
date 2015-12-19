@@ -1,0 +1,38 @@
+#include <SoftwareServo.h> 
+
+SoftwareServo servo; 
+                
+
+int pos = 0;
+int senzor1 = 3;
+int led = 1;
+bool valsenzor1 = HIGH;
+
+void setup() 
+{ 
+  servo.attach(0);
+  pinMode (senzor1, INPUT_PULLUP);
+  pinMode (led, OUTPUT);
+} 
+
+void loop() 
+
+
+{ 
+  valsenzor1 = digitalRead(senzor1);
+  if (valsenzor1 == LOW) 
+  { 
+    digitalWrite(led,HIGH);                       
+    servo.write(40);              
+    delay(15);                       
+    SoftwareServo::refresh();
+  }
+  else 
+  {  
+    digitalWrite(led,LOW);                        
+    servo.write(80);             
+    delay(15);                       
+    SoftwareServo::refresh();
+  }
+  
+}
